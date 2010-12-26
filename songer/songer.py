@@ -8,7 +8,12 @@ import sys
 
 from string import Template
 from traceback import format_exc
-    
+   
+VERSION_MAJOR = 1
+VERSION_MINOR = 0
+PRODUCT_NAME = "songer"
+VERSION_STRING = "%s %s.%s"%( PRODUCT_NAME, VERSION_MAJOR, VERSION_MINOR )
+
 DEFAULT_OUT_FORMAT = "$artist - $track $title.mp3"
 
 # The list of tokens we're prepared to process
@@ -32,7 +37,8 @@ The list of possible tokens are: %s
 """%(DEFAULT_OUT_FORMAT, str(NAMES))
 
     parser = argparse.ArgumentParser( description = DESCRIPTION,
-                                      formatter_class=argparse.RawDescriptionHelpFormatter )
+                                      formatter_class=argparse.RawDescriptionHelpFormatter,
+                                      version = VERSION_STRING )
     parser.add_argument("-d", "--debug",
                         action = "store_true",default=False,
                         help = "Set loglevel=DEBUG")

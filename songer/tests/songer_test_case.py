@@ -32,6 +32,14 @@ class SongerTestCase(unittest.TestCase):
         self.assertEqual( self.OK, SongerTestCase.doMain("-h") )
     
     
+    def test_version(self):
+        # XXX000: add a test to verify the string
+        correctVersionString = "%s %s.%s"%( songer.PRODUCT_NAME,
+                                            songer.VERSION_MAJOR,
+                                            songer.VERSION_MINOR )
+        self.assertEqual( self.OK, SongerTestCase.doMain("-v") )
+
+        
     """ HELPER FUNCTIONS """
     
     @classmethod
