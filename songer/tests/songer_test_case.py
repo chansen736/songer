@@ -1,20 +1,15 @@
 # Harness imports
 import unittest
 
+from songer_fixture import SongerFixture
+
 # Module-under-test imports
 import songer
 
-class SongerTestCase(unittest.TestCase):
+class SongerTestCase(unittest.TestCase, SongerFixture):
     """
-    Top-level test case for all songer tests.
+    Basic songer tests.
     """
-    
-    # Shorthand error codes from the module
-    OK = songer.RETURN_OK
-    ERROR = songer.RETURN_ERROR
-    
-    """ TEST CASES """
-    
     def test_nothing(self):
         self.assertEqual(0, 0, "Trivial, non-module test didn't assert 0==0")
 
@@ -27,9 +22,10 @@ class SongerTestCase(unittest.TestCase):
         # Verify the harness shorthand codes are set properly
         self.assertEqual( self.OK, songer.RETURN_OK )
         self.assertEqual( self.ERROR, songer.RETURN_ERROR )
-        
+    
+    
     def test_help(self):
-        self.assertEqual( self.OK, SongerTestCase.doMain("-h") )
+        self.assertEqual( self.OK, SongerFixture.doMain("-h") )
     
     
     def test_version(self):
@@ -37,22 +33,6 @@ class SongerTestCase(unittest.TestCase):
         correctVersionString = "%s %s.%s"%( songer.PRODUCT_NAME,
                                             songer.VERSION_MAJOR,
                                             songer.VERSION_MINOR )
-        self.assertEqual( self.OK, SongerTestCase.doMain("-v") )
+        self.assertEqual( self.OK, SongerFixture.doMain("-v") )
 
-        
-    """ HELPER FUNCTIONS """
-    
-    @classmethod
-    def doMain(cls, commandline):
-        """
-        Calls songer's main function with the given commandline
-        """
-        
-        try:
-            r = songer.main( commandline.split() )
-        except SystemExit, x:
-            r = x.code
-        
-        return r
-        
         

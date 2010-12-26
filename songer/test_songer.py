@@ -26,6 +26,7 @@ def main( argv ):
     """
     # Load all the tests in the "test" directory
     suite = unittest.TestLoader().discover( "tests", pattern = "*_test_case.py" )
+    
     # Run them. verbosity=2 prints the function names and output, and buffer=True only prints
     # output on test failure.
     result = unittest.TextTestRunner( verbosity = 2 , buffer = True ).run( suite )
