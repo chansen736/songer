@@ -14,7 +14,8 @@ class RenameTestCase(unittest.TestCase, SongerFixture, RenameFixture):
     
     def test_IMPLEMENT_ME(self):
         # XXX: This is a stub for when i start writing actual tests for this module
-        self.assertEqual( self.ERROR, self.doMain("abc") )
+        r = self.doMain("abc")
+        self.assertEqual( self.ERROR, r.getReturnCode() )
 
     
     

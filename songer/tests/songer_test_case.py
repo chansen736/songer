@@ -2,6 +2,7 @@
 import unittest
 
 from songer_fixture import SongerFixture
+from songer_result  import SongerResult
 
 # Module-under-test imports
 import songer
@@ -25,7 +26,8 @@ class SongerTestCase(unittest.TestCase, SongerFixture):
     
     
     def test_help(self):
-        self.assertEqual( self.OK, SongerFixture.doMain("-h") )
+        r = SongerFixture.doMain("-h")
+        self.assertEqual( self.OK, r.getReturnCode() )
     
     
     def test_version(self):
@@ -33,6 +35,7 @@ class SongerTestCase(unittest.TestCase, SongerFixture):
         correctVersionString = "%s %s.%s"%( songer.PRODUCT_NAME,
                                             songer.VERSION_MAJOR,
                                             songer.VERSION_MINOR )
-        self.assertEqual( self.OK, SongerFixture.doMain("-v") )
+        r = SongerFixture.doMain("-v")
+        self.assertEqual( self.OK, r.getReturnCode() )
 
         
