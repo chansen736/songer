@@ -27,22 +27,26 @@ class SongerFixture():
         return: songer_result.SongerResult containing the output of the command.
         """
         
+        # Save the existing stdout/stderr streams and replace them with our own buffers
         _stdout = sys.stdout
         _stderr = sys.stderr
         sys.stdout = StringIO()
         sys.stderr = StringIO()
         
+        # Execute the command
         try:
             rCode = songer.main( commandline.split() )
         except SystemExit, x:
             rCode = x.code
         
+        # Save our results
         result = SongerResult( returnCode = rCode,
                                stdoutput = sys.stdout.getvalue(),
                                stderrput = sys.stderr.getvalue() )
+        
+        # Clean up our streams
         sys.stdout.close()
         sys.stderr.close()
-        
         sys.stdout = _stdout
         sys.stderr = _stderr
         
