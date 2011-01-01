@@ -43,7 +43,6 @@ class SongerTestCase(unittest.TestCase, SongerFixture):
     
     
     def test_version(self):
-        # XXX000: add a test to verify the string
         correctVersionString = "%s %s.%s\n"%( songer.PRODUCT_NAME,
                                             songer.VERSION_MAJOR,
                                             songer.VERSION_MINOR )
