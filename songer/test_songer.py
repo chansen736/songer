@@ -29,9 +29,7 @@ def main( argv ):
     
     # Run them. verbosity=2 prints the function names and output, and buffer=True only prints
     # output on test failure.
-    # XXX: Turned buffering off since we're now capturing our own output. Once we verify the capture
-    # XXX  works correctly with buffering on, we can turn it back on.
-    result = unittest.TextTestRunner( verbosity = 2 , buffer = False ).run( suite )
+    result = unittest.TextTestRunner( verbosity = 2 , buffer = True ).run( suite )
     
     if result.wasSuccessful():
         return ERROR_CODES.OK

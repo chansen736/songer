@@ -28,14 +28,27 @@ class SongerTestCase(unittest.TestCase, SongerFixture):
     def test_help(self):
         r = SongerFixture.doMain("-h")
         self.assertEqual( self.OK, r.getReturnCode() )
+        
+        # Verify the help mentions all of our known commands/options
+        self.assertIn(songer.DESCRIPTION, r.getStdoutput())
+        self.assertIn("default output format is \"%s\""%songer.DEFAULT_OUT_FORMAT, r.getStdoutput())
+        self.assertIn("in-format", r.getStdoutput())
+        self.assertIn("--help", r.getStdoutput())
+        self.assertIn("--version", r.getStdoutput())
+        self.assertIn("--debug", r.getStdoutput())
+        self.assertIn("--dir", r.getStdoutput())
+        self.assertIn("--replace", r.getStdoutput())
+        self.assertIn("--set", r.getStdoutput())
+        self.assertIn("--out-format", r.getStdoutput())
     
     
     def test_version(self):
         # XXX000: add a test to verify the string
-        correctVersionString = "%s %s.%s"%( songer.PRODUCT_NAME,
+        correctVersionString = "%s %s.%s\n"%( songer.PRODUCT_NAME,
                                             songer.VERSION_MAJOR,
                                             songer.VERSION_MINOR )
         r = SongerFixture.doMain("-v")
         self.assertEqual( self.OK, r.getReturnCode() )
-
+        self.assertEqual(correctVersionString, r.getStderrput())
+        
         

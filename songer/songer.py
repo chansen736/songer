@@ -15,9 +15,17 @@ PRODUCT_NAME = "songer"
 VERSION_STRING = "%s %s.%s"%( PRODUCT_NAME, VERSION_MAJOR, VERSION_MINOR )
 
 DEFAULT_OUT_FORMAT = "$artist - $track $title.mp3"
-
 # The list of tokens we're prepared to process
 NAMES = ["artist", "title", "track"]
+# Part of the usage for the program
+DESCRIPTION="""
+Formats are specified as a series of tokens, identified like "$TOKEN_NAME". For example,
+the default output format is "%s".
+
+The list of possible tokens are: %s
+"""%(DEFAULT_OUT_FORMAT, str(NAMES))
+
+
 
 RETURN_OK    = 0
 RETURN_ERROR = 1
@@ -28,13 +36,6 @@ def get_parser():
     """
     return: argparse.parser with the appropriate options set
     """
-
-    DESCRIPTION="""
-Formats are specified as a series of tokens, identified like "$TOKEN_NAME". For example,
-the default output format is "%s".
-
-The list of possible tokens are: %s
-"""%(DEFAULT_OUT_FORMAT, str(NAMES))
 
     parser = argparse.ArgumentParser( description = DESCRIPTION,
                                       formatter_class=argparse.RawDescriptionHelpFormatter,
